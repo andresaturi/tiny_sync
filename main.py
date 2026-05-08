@@ -6,6 +6,8 @@ from sincronizar import sincronizar_estoques
 
 while True:
 
+    print('Sincronização iniciada')
+    
     try:
 
         agora = datetime.now()
