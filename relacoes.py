@@ -1,4 +1,5 @@
 TAMANHOS = [
+    "PP"
     "P",
     "M",
     "G",
