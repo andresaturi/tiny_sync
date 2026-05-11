@@ -1,5 +1,5 @@
 TAMANHOS = [
-    "PP"
+    "PP",
     "P",
     "M",
     "G",
@@ -26,7 +26,7 @@ TAMANHOS_GRANDES = [
 ]
 
 PRODUTOS = [
-    {   # casual preta
+    {   #casual preta
         "pai": "16030040001",
         "derivados": [
             "1075",
