@@ -3,7 +3,7 @@ from datetime import datetime
 
 from sincronizar import sincronizar_estoques
 
-print(datetime.now() + ' - Sincronização iniciada')
+print(f"{datetime.now()} - Sincronização iniciada")
 
 while True:
 
