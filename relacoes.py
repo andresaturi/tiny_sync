@@ -153,7 +153,8 @@ PRODUTOS = [
         "pai": "875652124",
         "tamanhos": TAMANHOS_PP,
         "derivados": [
-            "1485"
+            "1485",
+            "2003"
         ]
     },
 
@@ -249,6 +250,15 @@ PRODUTOS = [
            "4512"
         ]
     },
+
+     {   #Regata Machão fio 30 Branco
+        "pai": "1602009002",
+        "tamanhos": TAMANHOS_PADRAO,
+        "derivados": [
+           "1282"
+        ]
+    },
+
 
 ]
 
