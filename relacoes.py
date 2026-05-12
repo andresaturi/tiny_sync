@@ -1,5 +1,13 @@
-TAMANHOS = [
-    "PP",
+TAMANHOS_PADRAO = [
+    "P",
+    "M",
+    "G",
+    "GG",
+    "XG",
+    "G2",
+]
+
+TAMANHOS_COMPLETOS = [
     "P",
     "M",
     "G",
@@ -12,22 +20,29 @@ TAMANHOS = [
     "G6",
 ]
 
-CASUAIS = [
-    "16030040001",
-    "16030040002",
-    "16030040003"
+TAMANHOS_PP = [
+    "PP",
+    "P",
+    "M",
+    "G",
+    "GG",
+    "XG",
+    "G2",
+    "G3"
 ]
 
-TAMANHOS_GRANDES = [
-    "G3",
-    "G4",
-    "G5",
-    "G6"
+TAMANHOS_FEMININO = [
+    "PP",
+    "P",
+    "M",
+    "G",
+    "GG",      
 ]
 
 PRODUTOS = [
     {   #casual preta
         "pai": "16030040001",
+        "tamanhos": TAMANHOS_COMPLETOS,
         "derivados": [
             "1075",
             "1406",
@@ -59,6 +74,7 @@ PRODUTOS = [
 
     {   #casual Off
         "pai": "16030040003",
+        "tamanhos": TAMANHOS_COMPLETOS,
         "derivados": [
             "1482",
             "1474",
@@ -70,6 +86,7 @@ PRODUTOS = [
 
     {   #casual branca
         "pai": "16030040002",
+        "tamanhos": TAMANHOS_COMPLETOS,
         "derivados": [
             "1480",
             "1175",
@@ -86,6 +103,7 @@ PRODUTOS = [
 
     {   #moletom off
         "pai": "16090010003",
+        "tamanhos": TAMANHOS_PP,
         "derivados": [
             "2005"
         ]
@@ -93,6 +111,7 @@ PRODUTOS = [
 
     {   #moletom preto
         "pai": "16090010001",
+        "tamanhos": TAMANHOS_PP,
         "derivados": [
             "2002",
             "2013",
@@ -105,6 +124,7 @@ PRODUTOS = [
 
     {   #baby look preto
         "pai": "BRV26230001",
+        "tamanhos": TAMANHOS_FEMININO,
         "derivados": [
             "2015",
             "2014",
@@ -114,6 +134,7 @@ PRODUTOS = [
 
     {   #baby look off
         "pai": "BRV26230003",
+        "tamanhos": TAMANHOS_FEMININO,
         "derivados": [
             "2007",
             "1446"
@@ -122,12 +143,120 @@ PRODUTOS = [
 
     {   #baby look rosa
         "pai": "BRV26230007",
+        "tamanhos": TAMANHOS_FEMININO,
         "derivados": [
             
         ]
     },
 
+    {   #Street amarela
+        "pai": "875652124",
+        "tamanhos": TAMANHOS_PP,
+        "derivados": [
+            "1485"
+        ]
+    },
+
+    {   #Street preta
+        "pai": "16030850001",
+        "tamanhos": TAMANHOS_PP,
+        "derivados": [
+            
+        ]
+    },
+
+    {   #Street Off
+        "pai": "16030850003",
+        "tamanhos": TAMANHOS_PP,
+        "derivados": [
+            
+        ]
+    },
+
+    {   #Street Branca
+        "pai": "16030850002",
+        "tamanhos": TAMANHOS_PP,
+        "derivados": [
+            
+        ]
+    },
+
+    {   #Street Verde
+        "pai": "16030850071",
+        "tamanhos": TAMANHOS_PP,
+        "derivados": [
+            "2000",
+            "2253"
+        ]
+    },
+
+    {   #Cropped Off
+        "pai": "BRV26200003",
+        "tamanhos": TAMANHOS_FEMININO,
+        "derivados": [
+           "2010"
+           "2009"
+           "1484"
+        ]
+    },
+
+    {   #Cropped Preto
+        "pai": "BRV26200001",
+        "tamanhos": TAMANHOS_FEMININO,
+        "derivados": [
+            "1325"
+            "1273"
+            "1285"
+        ]
+    },
+   
+    {   #Cropped Marrom
+        "pai": "BRV26200348",
+        "tamanhos": TAMANHOS_FEMININO,
+        "derivados": [
+           
+        ]
+    },
+
+    {   #Regata Machão fio 20 CInza antibes
+        "pai": "BRV265500102",
+        "tamanhos": TAMANHOS_PADRAO,
+        "derivados": [
+           
+        ]
+    },
+
+    {   #Regata Machão fio 20 Preto marmorizado
+        "pai": "BRV26550345",
+        "tamanhos": TAMANHOS_PADRAO,
+        "derivados": [
+           "2004"
+        ]
+    },
+
+    {   #Regata Machão fio 20 Marinho marmorizado
+        "pai": "BRV26550345",
+        "tamanhos": TAMANHOS_PADRAO,
+        "derivados": [
+           "1415"
+        ]
+    },
+
+    {   #Regata Machão fio 30 OFF
+        "pai": "1602009003",
+        "tamanhos": TAMANHOS_PADRAO,
+        "derivados": [
+           "4512"
+        ]
+    },
+
 ]
+
+def gerar_sku_derivado(
+    derivado,
+    tamanho
+):
+    return f"{derivado}-{tamanho}"
 
 RELACOES = {}
 
@@ -137,13 +266,12 @@ for produto in PRODUTOS:
 
     derivados = produto["derivados"]
 
-    for tamanho in TAMANHOS:
+    tamanhos = produto["tamanhos"]
 
-        if (
-            sku_pai not in CASUAIS
-            and tamanho in TAMANHOS_GRANDES
-        ):
-            continue
+    if not derivados:
+        continue
+
+    for tamanho in tamanhos:
 
         chave = f"{sku_pai}{tamanho}"
 
@@ -152,7 +280,10 @@ for produto in PRODUTOS:
         for derivado in derivados:
 
             lista_derivados.append(
-                f"{derivado}-{tamanho}"
+                gerar_sku_derivado(
+                    derivado,
+                    tamanho
+                )
             )
 
         RELACOES[chave] = {

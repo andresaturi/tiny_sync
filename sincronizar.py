@@ -30,7 +30,7 @@ def sincronizar_estoques():
             derivados = config["derivados"]
 
             for sku_derivado in derivados:
-                sleep(5)
+                #sleep(5)
                 estoque_anterior = (
                     ULTIMOS_ESTOQUES.get(
                         sku_derivado
@@ -39,10 +39,9 @@ def sincronizar_estoques():
 
                 if estoque_anterior == estoque_final:
 
-                    """  print(
+                    print(
                         f"{sku_derivado} sem alteração"
-                    ) """
-
+                    )
                     continue
 
                 atualizar_estoque_por_sku(
@@ -54,9 +53,9 @@ def sincronizar_estoques():
                     sku_derivado
                 ] = estoque_final
 
-                """ print(
+                print(
                     f"{datetime.now()} - {sku_derivado} atualizado para {estoque_final}"
-                ) """
+                ) 
 
         except Exception as e:
 
