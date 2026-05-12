@@ -25,9 +25,8 @@ def buscar_produto_por_sku(sku):
     dados = response.json()
 
     produtos = dados["retorno"].get("produtos", [])
-
+   
     for item in produtos:
-
         produto = item["produto"]
 
         if produto["codigo"] == sku:
@@ -49,7 +48,6 @@ def obter_produto_completo(produto_id):
     dados = response.json()
 
     return dados["retorno"]["produto"]
-
 
 def obter_estoque_por_sku(sku):
 
@@ -79,7 +77,6 @@ def obter_estoque_por_sku(sku):
     except:
         return 0
     
-
 def atualizar_estoque_por_sku(sku, estoque):
 
     produto = buscar_produto_por_sku(sku)

@@ -3,17 +3,18 @@ from datetime import datetime
 
 from sincronizar import sincronizar_estoques
 
+print(datetime.now() + ' - Sincronização iniciada')
 
 while True:
 
-    print('Sincronização iniciada')
-    
+    log = False
+
     try:
 
         agora = datetime.now()
         hora = agora.hour
 
-        sincronizar_estoques()
+        sincronizar_estoques(log)
 
         # Madrugada
         if 0 <= hora <= 6:
@@ -31,3 +32,9 @@ while True:
         print(f"Erro: {e}")
 
         time.sleep(600)
+    
+    except KeyboardInterrupt:
+
+        print(f"Programa finalizado")
+        break
+        

@@ -8,7 +8,7 @@ from tiny_api import (
 
 ULTIMOS_ESTOQUES = {}
 
-def sincronizar_estoques():
+def sincronizar_estoques(log):
    
     global ULTIMOS_ESTOQUES
 
@@ -39,9 +39,10 @@ def sincronizar_estoques():
 
                 if estoque_anterior == estoque_final:
 
-                    print(
-                        f"{sku_derivado} sem alteração"
-                    )
+                    if log:
+                        print(
+                            f"{datetime.now()} {sku_derivado} sem alteração"
+                        )
                     continue
 
                 atualizar_estoque_por_sku(
@@ -53,9 +54,10 @@ def sincronizar_estoques():
                     sku_derivado
                 ] = estoque_final
 
-                print(
-                    f"{datetime.now()} - {sku_derivado} atualizado para {estoque_final}"
-                ) 
+                if log:
+                    print(
+                        f"{datetime.now()} - {sku_derivado} atualizado para {estoque_final}"
+                    ) 
 
         except Exception as e:
 
