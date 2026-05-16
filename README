@@ -1,0 +1,88 @@
+Sync Estoque Tiny
+
+Sistema de sincronização automática de estoque entre produtos no Tiny ERP, permitindo compartilhar o estoque de produtos base com múltiplos produtos derivados.
+
+Exemplo:
+
+Uma camiseta lisa controla o estoque de várias estampas
+Um moletom base controla o estoque de vários anúncios derivados
+
+O Tiny continua responsável por sincronizar os estoques com a Shopify.
+
+Funcionalidades
+
+Sincronização automática de estoque
+Compartilhamento de estoque entre SKUs
+Suporte a múltiplos tamanhos
+Estrutura escalável
+Retry automático em falhas da API
+Intervalos inteligentes por horário
+Execução contínua 24h
+Serviço systemd no Ubuntu
+Suporte a estoque de segurança
+
+Arquitetura
+
+Tiny ERP
+   ↓
+Python Sync
+   ↓
+Produtos derivados Tiny
+   ↓
+Tiny sincroniza Shopify
+
+
+Instalação
+1. Clonar projeto
+git clone URL_DO_REPOSITORIO
+2. Entrar na pasta
+cd sync_estoque
+3. Criar ambiente virtual
+python3 -m venv venv
+4. Ativar ambiente virtual
+
+Arquivo:
+
+relacoes.py
+
+Exemplo:
+
+{
+    "pai": "16090010003",
+    "tamanhos": TAMANHOS_PADRAO,
+    "derivados": [
+        "2005"
+    ]
+}
+
+Funcionamento
+
+Exemplo:
+
+Produto base:
+16090010003P
+
+↓
+
+Produtos derivados:
+2005-P
+
+Se o produto base possuir estoque 5:
+2005-P → estoque 5
+
+Dependências
+
+requests
+python-dotenv
+Tecnologias Utilizadas
+Python
+Tiny ERP API 2.0
+systemd
+Ubuntu
+requests
+dotenv
+
+Observações
+
+O Tiny é responsável pela sincronização final com Shopify
+O sistema apenas replica estoque internamente no Tiny
